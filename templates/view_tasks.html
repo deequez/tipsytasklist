@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Title: {{task['id']}}</h1>
+<h2>{{task['title']}} 
+    {% if task['completed_at'] %}
+        &mdash; <span class=Status>Completed</span>
+    {% endif %}
+</h2>
+
+<form method="POST" action="{{url_for('complete_task', id=task['id'])}}">
+    <br>
+    <label>Click to complete task:</label>
+    <button class="btn btn-primary">Completed</button>
+</form>
+{% endblock %}
