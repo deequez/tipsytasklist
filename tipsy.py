@@ -44,13 +44,14 @@ def complete_task(id):
 
 @app.route("/login")
 def login():
-    return render_template("login.html"), redirect(url_for("list_tasks"))
+    return render_template("login.html")
 
 @app.route("/authenticate", methods = ["POST"])
 def authenticate():
     login_email = request.form['email']
     login_pw = request.form['password']
     usr_auth = model.authenticate(g.db, login_email, login_pw)
+    print usr_auth
     session['usr_id'] = usr_auth['id']
     return redirect(url_for('list_tasks'))
 
